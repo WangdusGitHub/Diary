@@ -14,28 +14,16 @@
 
 let main = document.querySelector('#main');
 
-const showSavedMsg = () => {
-    let saveMsgBox = document.querySelector('span');
-    saveMsgBox.innerText = 'diary saved...';
-    saveMsgBox.classList.add('down-up-animation');
+const showMessage = (message) => {
+    let msgBox = document.querySelector('span');
+    msgBox.innerText = message;
+    msgBox.classList.add('down-up-animation');
 
     setTimeout(() => {
-            saveMsgBox.classList.remove('down-up-animation');
-            saveMsgBox.innerText = '';
-        }, 2000
-    );
-}
-const showDeleteMsg = () => {
-    let saveMsgBox = document.querySelector('span');
-    saveMsgBox.innerText = 'diary deleted...';
-    saveMsgBox.classList.add('down-up-animation');
-
-    setTimeout(() => {
-            saveMsgBox.classList.remove('down-up-animation');
-            saveMsgBox.innerText = '';
-        }, 2000
-    );
-}
+        msgBox.classList.remove('down-up-animation');
+        msgBox.innerText = '';
+    }, 2000);
+};
 
 const saveDiary = () => {
     let diaries = document.querySelectorAll('.text');
@@ -55,7 +43,8 @@ const saveDiary = () => {
 
     localStorage.setItem('diaryData', JSON.stringify(diaryData));
     localStorage.setItem('diaryDatesData', JSON.stringify(diaryDatesData));
-    showSavedMsg();
+
+    showMessage('diary saved...');
 }
 
 
@@ -97,9 +86,9 @@ const deleteDiary = () => {
         return;
     } else {
         let diary = document.querySelector('.diary');
-            diary.remove();
+        diary.remove();
         goBack();
-        showDeleteMsg();
+        showMessage('diary deleted...');
     }
 }
 
@@ -169,3 +158,5 @@ const onBtn = () => {
 const offBtn = () => {
     document.querySelector('.add').style.boxShadow = 'none';
 }
+document.querySelector('.add').addEventListener('mouseup', onBtn);
+document.querySelector('.add').addEventListener('mousedown', offBtn);
