@@ -298,6 +298,10 @@ textarea {
     .addNewBtn{
         padding: 0 .2rem 0 .2rem;
     }
+    .saveBtn:hover, .deleteBtn:hover, .backBtn:hover {
+        padding-top: .8rem;
+        margin-top: -.8rem;
+    }
 }
 @media (max-width: 400px) {
     .date {
