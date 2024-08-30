@@ -14,6 +14,28 @@
 
 let main = document.querySelector('#main');
 
+const showSavedMsg = () => {
+    let saveMsgBox = document.querySelector('span');
+    saveMsgBox.innerText = 'diary saved...';
+    saveMsgBox.classList.add('down-up-animation');
+
+    setTimeout(() => {
+            saveMsgBox.classList.remove('down-up-animation');
+            saveMsgBox.innerText = '';
+        }, 2000
+    );
+}
+const showDeleteMsg = () => {
+    let saveMsgBox = document.querySelector('span');
+    saveMsgBox.innerText = 'diary deleted...';
+    saveMsgBox.classList.add('down-up-animation');
+
+    setTimeout(() => {
+            saveMsgBox.classList.remove('down-up-animation');
+            saveMsgBox.innerText = '';
+        }, 2000
+    );
+}
 
 const saveDiary = () => {
     let diaries = document.querySelectorAll('.text');
@@ -33,6 +55,7 @@ const saveDiary = () => {
 
     localStorage.setItem('diaryData', JSON.stringify(diaryData));
     localStorage.setItem('diaryDatesData', JSON.stringify(diaryDatesData));
+    showSavedMsg();
 }
 
 
@@ -76,6 +99,7 @@ const deleteDiary = () => {
         let diary = document.querySelector('.diary');
             diary.remove();
         goBack();
+        showDeleteMsg();
     }
 }
 
